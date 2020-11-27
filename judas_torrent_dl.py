@@ -29,10 +29,10 @@ while True:
             or path.exists(base_folder / (filename + ".torrent.added"))
             or path.exists(base_folder / (filename + ".torrent.invalid"))
         ):
-            print("Downloading")
+            print("Downloading " + link)
             r = requests.get(link, allow_redirects=True)
             open(base_folder / (filename + ".torrent"), "wb").write(r.content)
-        else:
-            print("File Already Exists")
-    print("checking again in 1 hour")
+        # else:
+        #    print("File Already Exists")
+    print("Checking again in 1 hour")
     time.sleep(3600)
