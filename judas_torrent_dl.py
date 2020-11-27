@@ -1,6 +1,7 @@
 import requests
 import feedparser
 import re
+import os
 from os import path
 import time
 from pathlib import Path
@@ -31,6 +32,8 @@ while True:
         ):
             print("Downloading " + link)
             r = requests.get(link, allow_redirects=True)
+            if not os.path.exists(base_folder):
+                os.makedirs(base_folder)
             open(base_folder / (filename + ".torrent"), "wb").write(r.content)
         # else:
         #    print("File Already Exists")
